@@ -74,7 +74,7 @@ endif
 
 syn cluster htmlPreproc add=phpRegion
 
-syn include @sqlTop syntax/sql.vim
+syn include @sqlTop syntax/mysql.vim
 
 syn sync clear
 unlet! b:current_syntax
