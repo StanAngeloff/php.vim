@@ -420,7 +420,7 @@ if !exists("php_ignore_phpdoc")
 
   syn region phpDocTags  start="{@\(example\|id\|internal\|inheritdoc\|link\|source\|toc\|tutorial\)" end="}" containedin=phpComment
   syn match  phpDocTags  "@\(abstract\|access\|author\|category\|copyright\|deprecated\|example\|final\|global\|ignore\|internal\|license\|link\|method\|name\|package\|param\|property\|return\|see\|since\|static\|staticvar\|subpackage\|todo\|tutorial\|uses\|var\|version\)\s\+\S\+.*" contains=phpDocParam containedin=phpComment
-  syn match  phpDocParam "\s\S\+" contains=phpDocIdentifier
+  syn match  phpDocParam "\s\S\+" contained contains=phpDocIdentifier
   syn match  phpDocIdentifier contained "$\h\w*"
   syn match  phpDocTags  "@filesource" containedin=phpComment
 
