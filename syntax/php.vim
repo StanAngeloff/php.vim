@@ -566,6 +566,7 @@ if !exists("did_php_syn_inits")
   hi def link phpNowDoc           String
   hi def link phpFunctions        Function
   hi def link phpMethods          Function
+  hi def link phpDefineMethodName  Function
   hi def link phpClasses          StorageClass
   hi def link phpException        StorageClass
   hi def link phpIdentifier       Identifier
@@ -599,6 +600,9 @@ if !exists("did_php_syn_inits")
   hi def link phpSCKeyword        phpKeyword
 
   hi def link phpStaticClasses    phpClasses
+  hi def link phpDefineClassName  phpClasses
+
+  hi def link phpDefineExtendsName  String
 
   if exists("php_var_selector_is_identifier")
     hi def link phpVarSelector    phpIdentifier
