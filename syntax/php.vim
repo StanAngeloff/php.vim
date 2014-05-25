@@ -575,11 +575,8 @@ if !exists("did_php_syn_inits")
   hi def link phpStructure        Statement
   hi def link phpOperator         Operator
   hi def link phpMemberSelector   Operator
-  hi def link phpInclude          PreProc
   hi def link phpDefine           PreProc
-  hi def link phpKeyword          Keyword
   hi def link phpSuperglobals     Type
-  hi def link phpType             Type
   hi def link phpParent           Special
   hi def link phpSpecialChar      SpecialChar
   hi def link phpStrEsc           SpecialChar
@@ -602,7 +599,13 @@ if !exists("did_php_syn_inits")
   hi def link phpStaticClasses    phpClasses
   hi def link phpDefineClassName  phpClasses
 
+  " I change this in order to display the color that I like
+  " Maybe this is pretty WTF but no one cares
+  hi def link phpInclude          Include
+  hi def link phpKeyword          Keyword
+
   hi def link phpDefineExtendsName  String
+  hi def link phpType             Keyword
 
   if exists("php_var_selector_is_identifier")
     hi def link phpVarSelector    phpIdentifier
