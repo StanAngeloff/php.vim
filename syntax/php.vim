@@ -482,6 +482,22 @@ endif
 " Static classes
 syn match phpStaticClasses "\v\h\w+(::)@=" contained display
 
+" Class name
+syn keyword phpKeyword contained class
+      \ nextgroup=phpDefineClassName skipwhite skipempty
+syn match phpDefineClassName /\h\w*/
+
+" Extends class
+syn keyword phpKeyword contained extends
+      \ nextgroup=phpDefineExtendsName skipwhite skipempty
+syn match phpDefineExtendsName /\h\w*/
+
+" Method name
+syn keyword phpKeyword function contained
+      \ nextgroup=phpDefineMethodName skipwhite skipempty
+
+syn match phpDefineMethodName /\h\w*/
+
 " Clusters
 syn cluster phpClConst contains=phpFunctions,phpClasses,phpStaticClasses,phpIdentifier,phpStatement,phpKeyword,phpOperator,phpSplatOperator,phpStringSingle,phpStringDouble,phpBacktick,phpNumber,phpType,phpBoolean,phpStructure,phpMethodsVar,phpConstants,phpException,phpSuperglobals,phpMagicConstants,phpServerVars
 syn cluster phpClInside contains=@phpClConst,phpComment,phpDocComment,phpParent,phpParentError,phpInclude,phpHereDoc,phpNowDoc
