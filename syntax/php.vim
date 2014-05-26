@@ -500,8 +500,7 @@ syntax match phpClassImplementsComma contained nextgroup=phpClassImplementsName 
 
 " Method name
 syn keyword phpKeyword function contained
-      \ nextgroup=phpDefineMethodName skipwhite skipempty
-
+      \ nextgroup=phpDefineMethodName contained skipwhite skipempty
 syn match phpDefineMethodName /\h\w*/
 
 " Clusters
@@ -606,8 +605,9 @@ if !exists("did_php_syn_inits")
   hi def link phpDefineClassName  phpClasses
 
   " I change this in order to display the color that I like
-  " Maybe this is pretty WTF but no one cares
-  hi def link phpInclude          Include
+  " Maybe this is dosn't make sense or is a really WTF
+  " but no one cares
+  hi def link phpInclude          Keyword
   hi def link phpKeyword          Keyword
 
   hi def link phpDefineExtendsName  String
