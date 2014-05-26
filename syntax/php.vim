@@ -490,7 +490,7 @@ syn match phpDefineClassName /\h\w*/
 " Extends class
 syn keyword phpKeyword contained extends
       \ nextgroup=phpDefineExtendsName skipwhite skipempty
-syn match phpDefineExtendsName /\h\w*/
+syn match phpDefineExtendsName /\(\\\|\h\w*\)*\h\w*/
 
 " Method name
 syn keyword phpKeyword function contained
