@@ -492,6 +492,12 @@ syn keyword phpKeyword contained extends
       \ nextgroup=phpDefineExtendsName skipwhite skipempty
 syn match phpDefineExtendsName /\(\\\|\h\w*\)*\h\w*/
 
+" Implement classes, with commas
+syntax keyword phpKeyword contained implements
+      \ nextgroup=phpClassImplementsName skipwhite skipempty
+syntax match phpClassImplementsName contained nextgroup=phpClassImplementsComma skipwhite skipempty /\(\\\|\h\w*\)*\h\w*/
+syntax match phpClassImplementsComma contained nextgroup=phpClassImplementsName skipwhite skipempty /,/
+
 " Method name
 syn keyword phpKeyword function contained
       \ nextgroup=phpDefineMethodName skipwhite skipempty
@@ -605,6 +611,7 @@ if !exists("did_php_syn_inits")
   hi def link phpKeyword          Keyword
 
   hi def link phpDefineExtendsName  String
+  hi def link phpClassImplementsName String
   hi def link phpType             Keyword
 
   if exists("php_var_selector_is_identifier")
