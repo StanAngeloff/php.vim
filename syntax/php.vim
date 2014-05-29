@@ -595,6 +595,27 @@ endif
 " Static classes
 syn match phpStaticClasses "\v\h\w+(::)@=" contained display
 
+" Class name
+syn keyword phpKeyword contained class
+      \ nextgroup=phpDefineClassName skipwhite skipempty
+syn match phpDefineClassName /\h\w*/
+
+" Extends class
+syn keyword phpKeyword contained extends
+      \ nextgroup=phpDefineExtendsName skipwhite skipempty
+syn match phpDefineExtendsName /\(\\\|\h\w*\)*\h\w*/
+
+" Implement classes, with commas
+syntax keyword phpKeyword contained implements
+      \ nextgroup=phpClassImplementsName skipwhite skipempty
+syntax match phpClassImplementsName contained nextgroup=phpClassImplementsComma skipwhite skipempty /\(\\\|\h\w*\)*\h\w*/
+syntax match phpClassImplementsComma contained nextgroup=phpClassImplementsName skipwhite skipempty /,/
+
+" Method name
+syn keyword phpKeyword function contained
+      \ nextgroup=phpDefineMethodName contained skipwhite skipempty
+syn match phpDefineMethodName /\h\w*/
+
 " Clusters
 syn cluster phpClConst contains=phpFunctions,phpClasses,phpStaticClasses,phpIdentifier,phpStatement,phpKeyword,phpOperator,phpSplatOperator,phpStringSingle,phpStringDouble,phpBacktick,phpNumber,phpType,phpBoolean,phpStructure,phpMethodsVar,phpConstants,phpException,phpSuperglobals,phpMagicConstants,phpServerVars
 syn cluster phpClInside contains=@phpClConst,phpComment,phpDocComment,phpParent,phpParentError,phpInclude,phpHereDoc,phpNowDoc
@@ -663,6 +684,7 @@ if !exists("did_php_syn_inits")
   hi def link phpNowDoc           String
   hi def link phpFunctions        Function
   hi def link phpMethods          Function
+  hi def link phpDefineMethodName  Function
   hi def link phpClasses          StorageClass
   hi def link phpException        StorageClass
   hi def link phpIdentifier       Identifier
@@ -671,11 +693,8 @@ if !exists("did_php_syn_inits")
   hi def link phpStructure        Statement
   hi def link phpOperator         Operator
   hi def link phpMemberSelector   Operator
-  hi def link phpInclude          PreProc
   hi def link phpDefine           PreProc
-  hi def link phpKeyword          Keyword
   hi def link phpSuperglobals     Type
-  hi def link phpType             Type
   hi def link phpParent           Special
   hi def link phpSpecialChar      SpecialChar
   hi def link phpStrEsc           SpecialChar
@@ -696,6 +715,17 @@ if !exists("did_php_syn_inits")
   hi def link phpSCKeyword        phpKeyword
 
   hi def link phpStaticClasses    phpClasses
+  hi def link phpDefineClassName  phpClasses
+
+  " I change this in order to display the color that I like
+  " Maybe this is dosn't make sense or is a really WTF
+  " but no one cares
+  hi def link phpInclude          Keyword
+  hi def link phpKeyword          Keyword
+
+  hi def link phpDefineExtendsName  String
+  hi def link phpClassImplementsName String
+  hi def link phpType             Keyword
 
   if exists("php_var_selector_is_identifier")
     hi def link phpVarSelector    phpIdentifier
