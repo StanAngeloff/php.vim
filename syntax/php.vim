@@ -586,7 +586,7 @@ if !exists("php_ignore_phpdoc") || !php_ignore_phpdoc
   syn region phpCommentTitle contained matchgroup=phpDocComment start="/\*\*" matchgroup=phpCommmentTitle keepend end="\.$" end="\.[ \t\r<&]"me=e-1 end="[^{]@"me=s-2,he=s-1 end="\*/"me=s-1,he=s-1 contains=phpCommentStar,phpTodo,phpDocTags,@Spell containedin=phpDocComment
 
   syn region phpDocTags  start="{@\(example\|id\|internal\|inheritdoc\|link\|source\|toc\|tutorial\)" end="}" containedin=phpDocComment
-  syn match phpDocTags "@\%(abstract\|access\|author\|category\|copyright\|deprecated\|example\|exception\|filesource\|final\|global\|id\|ignore\|inheritdoc\|internal\|license\|link\|magic\|method\|name\|package\|param\|property\|return\|see\|since\|source\|static\|staticvar\|subpackage\|throws\|toc\|todo\|tutorial\|uses\|var\|version\)" containedin=phpDocComment nextgroup=phpDocParam,phpDocIdentifier skipwhite
+  syn match phpDocTags "@\%(abstract\|access\|author\|category\|copyright\|deprecated\|example\|exception\|filesource\|final\|global\|id\|ignore\|inheritdoc\|internal\|license\|link\|magic\|method\|name\|package\|param\|property\|return\|see\|since\|source\|static\|staticvar\|subpackage\|throws\|toc\|todo\|tutorial\|uses\|var\|version\|file\|class\|brief\|details\|author\|created\|date\|todo\|bug\|warning\)" containedin=phpDocComment nextgroup=phpDocParam,phpDocIdentifier skipwhite
   syn match phpDocParam "\s\+\zs\%(\h\w*|\?\)\+" nextgroup=phpDocIdentifier skipwhite
   syn match phpDocIdentifier "\s\+\zs$\h\w*"
 
@@ -792,8 +792,8 @@ if !exists("did_php_syn_inits")
   hi def link phpCommentStar      phpComment
   hi def link phpDocComment       phpComment
   hi def link phpCommentTitle     phpComment
-  hi def link phpDocTags          phpComment
-  hi def link phpDocParam         phpComment
+  hi def link phpDocTags          phpDefine
+  hi def link phpDocParam         phpType
   hi def link phpDocIdentifier    phpComment
 
   hi def link phpFCKeyword        phpKeyword
