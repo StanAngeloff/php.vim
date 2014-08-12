@@ -792,8 +792,8 @@ if !exists("did_php_syn_inits")
   hi def link phpCommentStar      phpComment
   hi def link phpDocComment       phpComment
   hi def link phpCommentTitle     phpComment
-  hi def link phpDocTags          phpComment
-  hi def link phpDocParam         phpComment
+  hi def link phpDocTags          phpDefine
+  hi def link phpDocParam         phpType
   hi def link phpDocIdentifier    phpComment
 
   hi def link phpFCKeyword        phpKeyword
