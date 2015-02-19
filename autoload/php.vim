@@ -1,0 +1,1 @@
+../syntax/php.vim
