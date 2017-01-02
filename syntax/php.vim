@@ -522,7 +522,7 @@ syn keyword phpKeyword die exit eval empty isset unset list instanceof insteadof
 syn keyword phpInclude include include_once require require_once namespace contained
 
 " Types
-syn keyword phpType bool[ean] int[eger] real double float string array object null self parent global this stdClass callable contained
+syn keyword phpType bool[ean] int[eger] real double float string array object null self parent global this stdClass callable iterable void contained
 
 " Operator
 syn match phpOperator       "[-=+%^&|*!.~?:]" contained display
