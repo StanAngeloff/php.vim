@@ -43,7 +43,7 @@ augroup phpSyntaxOverride
 augroup END
 ```
 
-<center>![Overriding Highlighting](http://i.imgur.com/eAlB1eb.png)</center>
+![Overriding Highlighting](http://i.imgur.com/eAlB1eb.png)
 
 Developing
 ----------
