@@ -39,6 +39,7 @@
 "           g:sql_type_default = 'postgresql' to set global SQL syntax highlighting language default (default: 'mysql')"
 "           php_html_in_strings = 1  for HTML syntax highlighting inside strings (default: 0)
 "           php_html_in_heredoc = 1 for HTML syntax highlighting inside heredocs (default: 1)
+"           php_html_in_nowdoc = 1 for HTML syntax highlighting inside nowdocs (default: 1)
 "           php_html_load = 1 for loading the HTML syntax at all.  Overwrites php_html_in_strings and php_html_in_heredoc (default: 1)
 "           php_ignore_phpdoc = 0 for not highlighting parts of phpDocs
 "           php_parent_error_close = 1  for highlighting parent error ] or ) (default: 0)
@@ -101,6 +102,10 @@ if (exists("php_html_load") && php_html_load)
     let php_html_in_heredoc=1
   endif
 
+  if !exists("php_html_in_nowdoc")
+    let php_html_in_nowdoc=1
+  endif
+
   runtime! syntax/html.vim
   unlet! b:current_syntax
   " HTML syntax file turns on spelling for all top level words, we attempt to turn off
@@ -109,9 +114,10 @@ if (exists("php_html_load") && php_html_load)
   syn cluster htmlPreproc add=phpRegion
 else
   " If it is desired that the HTML syntax file not be loaded at all, set the options for highlighting it in string
-  " and heredocs to false.
+  " heredocs and nowdocs to false.
   let php_html_in_strings=0
   let php_html_in_heredoc=0
+  let php_html_in_nowdoc=0
 endif
 
 if (exists("php_html_in_strings") && php_html_in_strings)
@@ -659,6 +665,10 @@ SynFold syn region phpNowDoc matchgroup=Delimiter start=+\(<<<\)\@<='\z(\I\i*\)'
 
 if (exists("php_sql_nowdoc") && php_sql_nowdoc)
   SynFold syn region phpNowDoc matchgroup=Delimiter start=+\(<<<\)\@<='\z(\(\I\i*\)\=\(sql\)\c\(\i*\)\)'$+ end="^\z1\(;\=$\)\@=" contained contains=@sqlTop,phpIdentifier,phpIdentifierSimply,phpIdentifierComplex,phpSpecialChar,phpMethodsVar,phpStrEsc keepend extend
+endif
+if (exists("php_html_in_nowdoc") && php_html_in_nowdoc)
+  SynFold syn region phpNowDoc matchgroup=Delimiter start=+\(<<<\)\@<='\z(\(\I\i*\)\=\(html\)\c\(\i*\)\)'$+ end="^\z1\(;\=$\)\@=" contained contains=@htmlTop,phpIdentifier,phpIdentifierSimply,phpIdentifierComplex,phpSpecialChar,phpMethodsVar,phpStrEsc keepend extend
+  SynFold syn region phpNowDoc matchgroup=Delimiter start=+\(<<<\)\@<='\z(\(\I\i*\)\=\(javascript\)\c\(\i*\)\)'$+ end="^\z1\(;\=$\)\@=" contained contains=@htmlJavascript,phpIdentifier,phpIdentifierSimply,phpIdentifierComplex,phpSpecialChar,phpMethodsVar,phpStrEsc keepend extend
 endif
 
 syn case ignore
