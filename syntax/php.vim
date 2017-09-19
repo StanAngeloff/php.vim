@@ -34,6 +34,7 @@
 "
 " Options:  php_sql_query = 1  for SQL syntax highlighting inside strings (default: 0)
 "           php_sql_heredoc = 1 for SQL syntax highlighting inside heredocs (default: 1)
+"           php_sql_nowdoc = 1 for SQL syntax highlighting inside nowdocs (default: 1)
 "           b:sql_type_override = 'postgresql' for PostgreSQL syntax highlighting in current buffer (default: 'mysql')
 "           g:sql_type_default = 'postgresql' to set global SQL syntax highlighting language default (default: 'mysql')"
 "           php_html_in_strings = 1  for HTML syntax highlighting inside strings (default: 0)
@@ -130,7 +131,11 @@ if !exists("php_sql_heredoc")
   let php_sql_heredoc=1
 endif
 
-if ((exists("php_sql_query") && php_sql_query) || (exists("php_sql_heredoc") && php_sql_heredoc))
+if !exists("php_sql_nowdoc")
+  let php_sql_nowdoc=1
+endif
+
+if ((exists("php_sql_query") && php_sql_query) || (exists("php_sql_heredoc") && php_sql_heredoc) || (exists("php_sql_nowdoc") && php_sql_nowdoc))
   " Use MySQL as the default SQL syntax file.
   " See https://github.com/StanAngeloff/php.vim/pull/1
   if !exists('b:sql_type_override') && !exists('g:sql_type_default')
@@ -651,6 +656,10 @@ endif
 
 " NowDoc
 SynFold syn region phpNowDoc matchgroup=Delimiter start=+\(<<<\)\@<='\z(\I\i*\)'$+ end="^\z1\(;\=$\)\@=" contained keepend extend
+
+if (exists("php_sql_nowdoc") && php_sql_nowdoc)
+  SynFold syn region phpNowDoc matchgroup=Delimiter start=+\(<<<\)\@<='\z(\(\I\i*\)\=\(sql\)\c\(\i*\)\)'$+ end="^\z1\(;\=$\)\@=" contained contains=@sqlTop,phpIdentifier,phpIdentifierSimply,phpIdentifierComplex,phpSpecialChar,phpMethodsVar,phpStrEsc keepend extend
+endif
 
 syn case ignore
 
